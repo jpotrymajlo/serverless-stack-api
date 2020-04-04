@@ -22,6 +22,19 @@ provider:
   #
   #environment:
   #  SAMPLE_ENV_VAR: ${env:SAMPLE_ENV_VAR}
+  environment:
+    tableName: notes
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamoDb.DescribeTable
+        - dynameDb.Query
+        - dynamoDb.Scan
+        - dynamoDb.GetItem
+        - dynamoDb.PutItem
+        - dynamoDb.UpdateItem
+        - dynamoDb.DeleteItem
+      Resource: "arn:aws:dynamodb:eu-central-1:767900483445:table/notes"
 
 functions:
   hello:
@@ -30,3 +43,12 @@ functions:
       - http:
           path: hello
           method: get
+  create:
+    handler: create.main
+    events:
+      - http:
+          path: notes
+          method: post
+          cors: true
+          authorizer: aws_iam
+          
