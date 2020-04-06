@@ -67,5 +67,12 @@ functions:
           method: get
           cors: true
           authorize: aws_iam
-
+  update:
+    handler: update.main
+    events:
+      - http:
+          path: notes/{id}
+          method: put
+          cors: true
+          authorize: aws_iam
           
