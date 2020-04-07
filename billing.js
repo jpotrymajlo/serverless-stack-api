@@ -13,7 +13,7 @@ export async function main(event, context) {
             source,
             amount,
             description,
-            currency: "usd" 
+            currency: "usd"
         });
         return success({status : true});
     }
