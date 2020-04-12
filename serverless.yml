@@ -93,3 +93,7 @@ functions:
           cors: true
           authorize: aws_iam
 
+resources:
+  # API gateeway errors
+  - ${file(resources/api-gateway-errors.yml)}
+
